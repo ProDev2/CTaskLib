@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSource>true</IncludeSource>
+
+    <Title>CTasks</Title>
+    <PackageId>CTasks</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>GVoid</Authors>
+  </PropertyGroup>
+
+</Project>
