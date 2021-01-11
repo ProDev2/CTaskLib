@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CTasks</id>
+    <version>1.0.1</version>
+    <title>CTasks</title>
+    <authors>GVoid</authors>
+    <owners>GVoid</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\bin\Debug\netstandard2.0\CTasks.pdb" target="lib\netstandard2.0\CTasks.pdb" />
+    <file src="C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\bin\Debug\netstandard2.0\CTasks.dll" target="lib\netstandard2.0\CTasks.dll" />
+    <file src="C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\CUtils.cs" target="src\CTasks\CUtils.cs" />
+    <file src="C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\Deque.cs" target="src\CTasks\Deque.cs" />
+    <file src="C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\Exec.cs" target="src\CTasks\Exec.cs" />
+    <file src="C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\Extensions\ExtAsync.cs" target="src\CTasks\Extensions\ExtAsync.cs" />
+    <file src="C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\Extensions\ExtExec.cs" target="src\CTasks\Extensions\ExtExec.cs" />
+    <file src="C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\Extensions\ExtTask.cs" target="src\CTasks\Extensions\ExtTask.cs" />
+    <file src="C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\Extensions\ExtUtils.cs" target="src\CTasks\Extensions\ExtUtils.cs" />
+    <file src="C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\Task.cs" target="src\CTasks\Task.cs" />
+    <file src="C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\CTasks.csproj" target="src\CTasks\CTasks.csproj" />
+  </files>
+</package>

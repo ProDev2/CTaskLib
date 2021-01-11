@@ -294,7 +294,7 @@ namespace CTasks.Exec
     }
 
     public class Handler {
-        public static int RETRY_TIMEOUT = 20;
+        public static long RETRY_TIMEOUT = 20L;
 
         public readonly Object mLock;
 
@@ -336,15 +336,15 @@ namespace CTasks.Exec
             return Push(runnable, null, null);
         }
 
-        public Request PostDelayed(Object runnable, int delay) {
+        public Request PostDelayed(Object runnable, long delay) {
             return Push(runnable, delay, null);
         }
 
-        public Request PostAtTime(Object runnable, int time) {
+        public Request PostAtTime(Object runnable, long time) {
             return Push(runnable, null, time);
         }
 
-        protected virtual Request Push(Object runnable, int? delay, int? time) {
+        protected virtual Request Push(Object runnable, long? delay, long? time) {
             ThrowIfClosed();
 
             if (runnable == null) {
@@ -369,16 +369,16 @@ namespace CTasks.Exec
             if (delay == null && time == null) {
                 Push(request);
             } else if (delay == null) {
-                Push(new Entry(request, (int) time));
+                Push(new Entry(request, (long) time));
             } else if (time == null) {
                 try {
-                    time = GetTime() + (int) delay;
+                    time = GetTime() + (long) delay;
                 } catch {}
                 if (time == null) Push(request);
-                else Push(new Entry(request, (int) time));
+                else Push(new Entry(request, (long) time));
             } else {
                 time += delay;
-                Push(new Entry(request, (int) time));
+                Push(new Entry(request, (long) time));
             }
             return request;
         }
@@ -465,7 +465,7 @@ namespace CTasks.Exec
             }
         }
 
-        internal Request Next(int timeout) {
+        internal Request Next(long timeout) {
             if (mClosed) return null;
 
             if (mBusy) goto wait;
@@ -495,13 +495,13 @@ namespace CTasks.Exec
                     }
                 }
                 if (size > 0) {
-                    int remTime = 0;
+                    long remTime = 0L;
                     try {
-                        int t = GetTime();
+                        long t = GetTime();
                         remTime = entry.GetRemTime(t);
                     } catch {}
-                    if (remTime > 0) {
-                        timeout = timeout != -1
+                    if (remTime > 0L) {
+                        timeout = timeout != -1L
                                 ? Math.Min(timeout, remTime)
                                 : remTime;
                         entry = null;
@@ -566,8 +566,8 @@ namespace CTasks.Exec
                 if (!retry) goto wait;
                 if (mClosed) return null;
 
-                int retryTimeout = RETRY_TIMEOUT;
-                timeout = timeout != -1
+                long retryTimeout = RETRY_TIMEOUT;
+                timeout = timeout != -1L
                         ? Math.Min(timeout, retryTimeout)
                         : retryTimeout;
             } finally {
@@ -575,14 +575,17 @@ namespace CTasks.Exec
             }
 
             wait:
-            if (timeout >= -1 && !mClosed) {
-                if (timeout == -1) {
-                    timeout = Timeout.Infinite;
+            if (timeout >= -1L && !mClosed) {
+                int iTimeout = (int) Math.Min(
+                    (long) int.MaxValue, timeout
+                );
+                if (iTimeout == -1) {
+                    iTimeout = Timeout.Infinite;
                 }
                 lock (mLock) {
-                    Monitor.Wait(mLock, timeout);
+                    Monitor.Wait(mLock, iTimeout);
                 }
-                return Next(-2);
+                return Next(-2L);
             } else {
                 return null;
             }
@@ -596,8 +599,8 @@ namespace CTasks.Exec
             RemoveAll(false);
         }
 
-        protected int GetTime() {
-            return DateTime.Now.Millisecond;
+        protected long GetTime() {
+            return DateTimeOffset.Now.ToUnixTimeMilliseconds();
         }
 
         protected static bool IsValid(Request request) {
@@ -611,15 +614,15 @@ namespace CTasks.Exec
 
         private sealed class Entry : IComparer<Entry> {
             public readonly Request mRequest;
-            public readonly int mAtTime;
+            public readonly long mAtTime;
 
-            public Entry(Request request, int atTime) {
+            public Entry(Request request, long atTime) {
                 mRequest = request;
                 mAtTime = atTime;
             }
 
-            public int GetRemTime(int time) {
-                return Math.Max(mAtTime - time, 0);
+            public long GetRemTime(long time) {
+                return Math.Max(mAtTime - time, 0L);
             }
 
             public int Compare(Entry e1, Entry e2) {
@@ -635,10 +638,10 @@ namespace CTasks.Exec
         public const int STATE_STARTED = 0x1 << 25;
         public const int STATE_READY = STATE_STARTED | 0x1 << 24;
 
-        public const int IMMEDIATE_TIMEOUT = -2;
-        public const int NO_TIMEOUT = -1;
+        public const long IMMEDIATE_TIMEOUT = -2L;
+        public const long NO_TIMEOUT = -1L;
 
-        public static int DEFAULT_TIMEOUT = 700;
+        public static long DEFAULT_TIMEOUT = 700L;
 
         public readonly Object mLock;
         public volatile Handler mHandler;
@@ -718,7 +721,7 @@ namespace CTasks.Exec
             return Handle(DEFAULT_TIMEOUT);
         }
 
-        public virtual bool Handle(int timeout) {
+        public virtual bool Handle(long timeout) {
             Handler handler = mHandler;
             lock (mLock) {
                 int state = mState;
@@ -772,8 +775,8 @@ namespace CTasks.Exec
         }
 
         public virtual void Run() {
-            int timeout = DEFAULT_TIMEOUT;
-            timeout = Math.Max(timeout, -1);
+            long timeout = DEFAULT_TIMEOUT;
+            timeout = Math.Max(timeout, -1L);
 
             try {
                 while (IsReady()) {
