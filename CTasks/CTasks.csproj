@@ -8,8 +8,10 @@
 
     <Title>CTasks</Title>
     <PackageId>CTasks</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.4</Version>
     <Authors>GVoid</Authors>
+
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>

@@ -1,8 +1,8 @@
-C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\obj\Debug\netstandard2.0\CTasks.csprojAssemblyReference.cache
-C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\obj\Debug\netstandard2.0\CTasks.AssemblyInfoInputs.cache
-C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\obj\Debug\netstandard2.0\CTasks.AssemblyInfo.cs
 C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\bin\Debug\netstandard2.0\CTasks.deps.json
 C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\bin\Debug\netstandard2.0\CTasks.dll
 C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\bin\Debug\netstandard2.0\CTasks.pdb
+C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\obj\Debug\netstandard2.0\CTasks.csprojAssemblyReference.cache
+C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\obj\Debug\netstandard2.0\CTasks.AssemblyInfoInputs.cache
+C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\obj\Debug\netstandard2.0\CTasks.AssemblyInfo.cs
 C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\obj\Debug\netstandard2.0\CTasks.dll
 C:\Users\Pascal\VSC Projects\CTaskLib\CTasks\obj\Debug\netstandard2.0\CTasks.pdb

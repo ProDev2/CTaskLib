@@ -599,7 +599,7 @@ namespace CTasks.Exec
             RemoveAll(false);
         }
 
-        protected long GetTime() {
+        protected virtual long GetTime() {
             return DateTimeOffset.Now.ToUnixTimeMilliseconds();
         }
 
